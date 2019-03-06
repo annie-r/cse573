@@ -69,14 +69,14 @@ class Episode:
         if action['action'] == 'LookTomato':
             objects = self._env.last_event.metadata['objects']
             visible_objects = [o['objectType'] for o in objects if o['visible']]
-            if 'Tomato' in visible_objects:
+            if 'Tomato' in visible_objects and (self.target['Tomato'] == False) :
                 self.target['Tomato'] = True
                 reward += GOAL_SUCCESS_REWARD
 
-        if action['action'] == 'LookBowl':
+        if action['action'] == 'LookBowl' :
             objects = self._env.last_event.metadata['objects']
             visible_objects = [o['objectType'] for o in objects if o['visible']]
-            if 'Bowl' in visible_objects:
+            if 'Bowl' in visible_objects and (self.target['Bowl'] == False):
                 self.target['Bowl']= True
                 reward += GOAL_SUCCESS_REWARD
 
