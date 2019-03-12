@@ -38,7 +38,7 @@ class Episode:
         return self._env
 
     def state_for_agent(self):
-        return self.environment.current_frame
+        return (self.environment.current_frame, self.triedFind)
 
     def step(self, action_as_int):
         action = self.actions_list[action_as_int]
@@ -67,17 +67,20 @@ class Episode:
         action_was_successful = self.environment.last_action_success
 
         if action['action'] == 'LookTomato':
+
+            self.triedFind['Tomato'] = True
             objects = self._env.last_event.metadata['objects']
             visible_objects = [o['objectType'] for o in objects if o['visible']]
             if 'Tomato' in visible_objects and (self.target['Tomato'] == False) :
                 self.target['Tomato'] = True
                 reward += GOAL_SUCCESS_REWARD
 
-        if action['action'] == 'LookBowl' :
+        if action['action'] == 'LookBowl':
+            self.triedFind['Bowl'] = True
             objects = self._env.last_event.metadata['objects']
             visible_objects = [o['objectType'] for o in objects if o['visible']]
             if 'Bowl' in visible_objects and (self.target['Bowl'] == False):
-                self.target['Bowl']= True
+                self.target['Bowl'] = True
                 reward += GOAL_SUCCESS_REWARD
 
         if action['action'] == 'Done':
@@ -110,6 +113,7 @@ class Episode:
 
         # For now, single target.
         self.target = {'Tomato':False,'Bowl':False}
+        self.triedFind = {'Tomato':False, 'Bowl':False}
         self.success = False
         self.cur_scene = scene
         self.actions_taken = []

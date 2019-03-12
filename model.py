@@ -38,6 +38,9 @@ class Model(torch.nn.Module):
         self.lstm = nn.LSTMCell(1024, args.hidden_state_sz)
         self.critic_linear = nn.Linear(args.hidden_state_sz, 1)
         self.actor_linear = nn.Linear(args.hidden_state_sz, args.action_space)
+        self.augmented_linear = nn.Linear(2, 300)
+        self.augmented_combination = nn.Linear(1024 + 300, 1024)
+
 
         self.apply(weights_init)
         relu_gain = nn.init.calculate_gain('relu')
@@ -58,19 +61,27 @@ class Model(torch.nn.Module):
         self.train()
 
     def embedding(self, state):
-        x = F.relu(self.maxp1(self.conv1(state)))
+        x = F.relu(self.maxp1(self.conv1(state[0])))
         x = F.relu(self.maxp2(self.conv2(x)))
         x = F.relu(self.maxp3(self.conv3(x)))
         x = F.relu(self.maxp4(self.conv4(x)))
 
+        # x = x.view(x.size(0), -1)
+
         x = x.view(x.size(0), -1)
-        return x
+        additional_score = self.augmented_linear(state[1])
+        augmented_x = self.augmented_combination(torch.cat([x, additional_score]))
+        return augmented_x
+
+        #return x
 
     def a3clstm(self, x, hidden):
         hx, cx = self.lstm(x, hidden)
         x = hx
         critic_out = self.critic_linear(x)
         actor_out = self.actor_linear(x)
+        # action_out = self.action_linear + self.memory_linear
+		# need to make another layer
         return actor_out, critic_out, (hx, cx)
 
     def forward(self, model_input):
@@ -78,5 +89,4 @@ class Model(torch.nn.Module):
         (hx, cx) = model_input.hidden
         x = self.embedding(state)
         actor_out, critic_out, (hx, cx) = self.a3clstm(x, (hx, cx))
-
         return ModelOutput(policy=actor_out, value=critic_out, hidden=(hx, cx))

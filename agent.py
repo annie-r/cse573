@@ -41,14 +41,16 @@ class A3CAgent:
 
     def eval_at_state(self):
         model_input = ModelInput()
-        model_input.state = self.preprocess_frame(self.episode.state_for_agent())
+        preproc_state = self.episode.state_for_agent()
+        model_input.state = (self.preprocess_frame(preproc_state[0]),self.preprocess_tryFind(preproc_state[1]))
         model_input.hidden = self.hidden
         model_output = self.model.forward(model_input)
         return model_output
 
     @property
     def state(self):
-        return self.preprocess_frame(self.episode.state_for_agent())
+        preproc_state = self.episode.state_for_agent()
+        return (self.preprocess_frame(preproc_state[0]), self.preprocess_triedFind(preproc_state[1]))
 
     @property
     def episode(self):
@@ -153,6 +155,8 @@ class A3CAgent:
         state = torch.Tensor(frame)
         return gpuify(state.unsqueeze(0), self.gpu_id)
 
+    def preprocess_triedFind(self, triedFind):
+        return torch.Tensor([triedFind['Tomato'], triedFind['Bowl']])
     def exit(self):
         self.episode.environment.controller.stop()
 
