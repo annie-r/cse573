@@ -35,7 +35,7 @@ class Model(torch.nn.Module):
         self.conv4 = nn.Conv2d(64, 64, 3, stride=1, padding=1)
         self.maxp4 = nn.MaxPool2d(2, 2)
 
-        self.lstm = nn.LSTMCell(1024+300, args.hidden_state_sz)
+        self.lstm = nn.LSTMCell(1024, args.hidden_state_sz)
         self.critic_linear = nn.Linear(args.hidden_state_sz, 1)
         self.actor_linear = nn.Linear(args.hidden_state_sz, args.action_space)
         self.augmented_linear = nn.Linear(2, 300)
@@ -69,8 +69,8 @@ class Model(torch.nn.Module):
         # x = x.view(x.size(0), -1)
 
         x = x.view(x.size(0), -1)
-        additional_score = self.augmented_linear(state[1])
-        augmented_x = self.augmented_combination(torch.cat([x, additional_score]))
+        additional_score = self.augmented_linear(state[1]) #afteruunsqueeze, .cuda()
+        augmented_x = self.augmented_combination(torch.cat([x, additional_score]), dim=1)
         return augmented_x
 
         #return x
