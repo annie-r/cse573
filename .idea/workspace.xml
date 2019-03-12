@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4058541a-0a46-4989-bca4-09052240970d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model.py" afterPath="$PROJECT_DIR$/model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cse573.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.683313">
-              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5225335">
+              <caret line="73" column="89" selection-start-line="73" selection-start-column="89" selection-end-line="73" selection-end-column="89" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -71,8 +70,8 @@
       <file leaf-file-name="agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.035088">
-              <caret line="159" column="40" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="42" />
+            <state vertical-scroll-proportion="-7.4561405">
+              <caret line="44" column="113" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="113" />
               <folding>
                 <element signature="e#39#70#0" expanded="true" />
               </folding>
@@ -455,8 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.035088">
-          <caret line="159" column="40" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="42" />
+        <state vertical-scroll-proportion="-7.4561405">
+          <caret line="44" column="113" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="113" />
           <folding>
             <element signature="e#39#70#0" expanded="true" />
           </folding>
@@ -465,8 +464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.683313">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5225335">
+          <caret line="73" column="89" selection-start-line="73" selection-start-column="89" selection-end-line="73" selection-end-column="89" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
