@@ -42,7 +42,7 @@ class A3CAgent:
     def eval_at_state(self):
         model_input = ModelInput()
         preproc_state = self.episode.state_for_agent()
-        model_input.state = (self.preprocess_frame(preproc_state[0]),self.preprocess_tryFind(preproc_state[1]))
+        model_input.state = (self.preprocess_frame(preproc_state[0]),self. preprocess_triedFind(preproc_state[1]))
         model_input.hidden = self.hidden
         model_output = self.model.forward(model_input)
         return model_output
@@ -50,7 +50,7 @@ class A3CAgent:
     @property
     def state(self):
         preproc_state = self.episode.state_for_agent()
-        return (self.preprocess_frame(preproc_state[0]), self.preprocess_triedFind(preproc_state[1]))
+        return (self.preprocess_frame(preproc_state[0]), self. preprocess_triedFind(preproc_state[1]))
 
     @property
     def episode(self):

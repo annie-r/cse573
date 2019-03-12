@@ -81,7 +81,7 @@ class Model(torch.nn.Module):
         critic_out = self.critic_linear(x)
         actor_out = self.actor_linear(x)
         # action_out = self.action_linear + self.memory_linear
-		# need to make another layer
+        # need to make another layer
         return actor_out, critic_out, (hx, cx)
 
     def forward(self, model_input):
