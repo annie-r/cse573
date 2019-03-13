@@ -66,6 +66,7 @@ class Episode:
         done = False
         action_was_successful = self.environment.last_action_success
 
+        '''
         if action['action'] == 'LookObject':
             self.triedFind['Tomato'] = True
             self.triedFind['Bowl'] = True
@@ -77,8 +78,8 @@ class Episode:
             if 'Bowl' in visible_objects and (self.target['Bowl'] == False):
                 self.target['Bowl'] = True
                 reward += GOAL_SUCCESS_REWARD
-
-        '''if action['action'] == 'LookTomato':
+        '''
+        if action['action'] == 'LookTomato':
 
             self.triedFind['Tomato'] = True
             objects = self._env.last_event.metadata['objects']
@@ -94,7 +95,7 @@ class Episode:
             if 'Bowl' in visible_objects and (self.target['Bowl'] == False):
                 self.target['Bowl'] = True
                 reward += GOAL_SUCCESS_REWARD
-        '''
+
         if action['action'] == 'Done':
             done = True
             #objects = self._env.last_event.metadata['objects']
