@@ -104,7 +104,7 @@ class Episode:
             #    reward += GOAL_SUCCESS_REWARD
             self.success = self.target['Bowl'] and self.target['Tomato']
             if self.success:
-                reward += GOAL_SUCCESS_REWARD
+                reward += 3
 
         return reward, done, action_was_successful
 
